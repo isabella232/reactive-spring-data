@@ -7,7 +7,6 @@ import org.springframework.boot.test.context.SpringBootTest
 class ReactiveSpringApplicationTests {
 
 	@Test
-	fun contextLoads() {
-	}
+	fun contextLoads() {}
 
 }

@@ -9,6 +9,7 @@ class RouletteRound {
 
     @Id
     @org.springframework.data.annotation.Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     var id: Long? = null
         private set
 
@@ -44,7 +45,7 @@ class RouletteRound {
     }
 
     companion object {
-        fun newRound(appointment: LocalDateTime?, participants: List<String>): RouletteRound {
+        fun newRound(appointment: LocalDateTime?, participants: List<String> = listOf()): RouletteRound {
             val round = RouletteRound()
             round.appointment = appointment ?: LocalDateTime.now()
             participants.forEach { round.addParticipant(it) }
