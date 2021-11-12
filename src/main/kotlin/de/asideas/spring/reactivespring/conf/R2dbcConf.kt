@@ -1,4 +1,4 @@
-package de.asideas.spring.reactivespring.model
+package de.asideas.spring.reactivespring.conf
 
 import io.r2dbc.spi.ConnectionFactory
 import org.slf4j.LoggerFactory
@@ -15,7 +15,7 @@ import org.springframework.r2dbc.connection.init.ResourceDatabasePopulator
 @Configuration
 @EnableR2dbcRepositories
 @EnableConfigurationProperties(SqlInitializationProperties::class)
-class JpaConf {
+class R2dbcConf {
 
     private val log = LoggerFactory.getLogger(this.javaClass)
 
