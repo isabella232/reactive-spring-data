@@ -4,10 +4,12 @@ import de.asideas.spring.reactivespring.model.RouletteRound
 import de.asideas.spring.reactivespring.model.RouletteRoundRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
+import org.springframework.http.MediaType
 import org.springframework.web.bind.annotation.*
 import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
 import java.time.LocalDateTime
+import java.time.Duration
 
 @RestController
 @RequestMapping("/api/roulette")
@@ -15,9 +17,11 @@ class RouletteController @Autowired constructor(
     private val rouletteRoundRepository: RouletteRoundRepository
 ) {
 
-    @GetMapping
+    @GetMapping(produces = [MediaType.TEXT_EVENT_STREAM_VALUE])
     private fun getRoulettes(): Flux<RouletteRound> {
-        return rouletteRoundRepository.findAll()
+        return rouletteRoundRepository
+            .findAll()
+            .delayElements(Duration.ofMillis(500))
     }
 
     @GetMapping("/{id}")
